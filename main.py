@@ -1,9 +1,16 @@
 import streamlit as st
 import requests
+import chardet
 
 # Define API endpoint and your OpenAI API key
 API_ENDPOINT = "https://api.openai.com/v1/engines/whisper-1.0.0/completions"
 API_KEY = "YOUR_API_KEY"
+
+# Function to detect file encoding
+def detect_encoding(file):
+    raw_data = file.read()
+    result = chardet.detect(raw_data)
+    return result["encoding"]
 
 # Function to transcribe uploaded file using OpenAI Whisper API
 def transcribe_file(file):
@@ -12,16 +19,16 @@ def transcribe_file(file):
         "Content-Type": "application/json",
     }
 
-    # Read file content
-    content = file.read()
+    # Detect file encoding
+    file_encoding = detect_encoding(file)
 
-    # Convert content to string
-    content_str = content.decode("utf-8")
+    # Read file content using the detected encoding
+    content = file.read().decode(file_encoding)
 
     # Prepare API request payload
     payload = {
         "prompt": "Transcribe the following audio:",
-        "examples": [{"document": content_str}],
+        "examples": [{"document": content}],
         "max_tokens": 2048,
     }
 
