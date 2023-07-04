@@ -22,8 +22,8 @@ def transcribe_file(file):
     # Detect file encoding
     file_encoding = detect_encoding(file)
 
-    # Read file content using the detected encoding
-    content = file.read().decode(file_encoding)
+    # Read file content using the detected encoding or fallback to 'utf-8'
+    content = file.read().decode(file_encoding or 'utf-8')
 
     # Prepare API request payload
     payload = {
