@@ -3,8 +3,8 @@ import requests
 import chardet
 
 # Define API endpoint and your OpenAI API key
-API_ENDPOINT = "https://api.openai.com/v1/engines/whisper-1.0.0/completions"
-API_KEY = "openai_api_key"
+# API_ENDPOINT = "https://api.openai.com/v1/engines/whisper-1.0.0/completions"
+# API_KEY = "openai_api_key"
 
 # Function to detect file encoding
 def detect_encoding(file):
