@@ -15,10 +15,13 @@ def transcribe_file(file):
     # Read file content
     content = file.read()
 
+    # Convert content to string
+    content_str = content.decode("utf-8")
+
     # Prepare API request payload
     payload = {
         "prompt": "Transcribe the following audio:",
-        "examples": [{"document": content}],
+        "examples": [{"document": content_str}],
         "max_tokens": 2048,
     }
 
