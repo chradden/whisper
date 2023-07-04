@@ -1,3 +1,6 @@
 streamlit
 openai
 whisper
+pytorch
+torchvision
+torchaudio
